@@ -7,7 +7,7 @@
 #define WINDOW_TITLE "SDL Example"
 #define EXAMPLE_TEXT "Example text"
 #define EXAMPLE_TEXT_SIZE 30
-#define EXAMPLE_TEXT_COLOR (SDL_Color) { 255, 0, 0, 255 }
+#define EXAMPLE_TEXT_COLOR (SDL_Color){ 255, 0, 0, 255 }
 #define FONT_PATH "lemon.ttf"
 
 #define MUSIC_PATH "Secret Melody.mp3"
@@ -21,7 +21,7 @@
    ? SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, str ": %s", SDL_GetError()),   \
    exit(1) : 0)
 
-int main(int argc, char *argv[]) {
+int main(int argc, char **argv) {
 
   // Initialize SDL
   SDL_Init(SDL_INIT_EVERYTHING);
@@ -57,8 +57,8 @@ int main(int argc, char *argv[]) {
   // Load music
   int audio_failed = Mix_OpenAudio(44100, AUDIO_S32, 2, 4096);
   SDL_ERROR(!audio_failed, "Failed to open audio channel");
-  audio_failed = Mix_AllocateChannels(AUDIO_CHANNEL_COUNT);
-  SDL_ERROR(audio_failed == AUDIO_CHANNEL_COUNT, "Failed to allocate channels");
+  int channels = Mix_AllocateChannels(AUDIO_CHANNEL_COUNT);
+  SDL_ERROR(channels == AUDIO_CHANNEL_COUNT, "Failed to allocate channels");
   Mix_Music *music = Mix_LoadMUS(MUSIC_PATH);
   SDL_ERROR(music, "Failed to load music");
   puts("Music loaded");
