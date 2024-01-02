@@ -7,7 +7,7 @@
 #define WINDOW_TITLE "SDL Example"
 #define EXAMPLE_TEXT "Example text"
 #define EXAMPLE_TEXT_SIZE 30
-#define EXAMPLE_TEXT_COLOR (SDL_Color) { 255, 0, 0, 255 }
+#define EXAMPLE_TEXT_COLOR (SDL_Color){ 255, 0, 0, 255 }
 #define FONT_PATH "lemon.ttf"
 
 #define MUSIC_PATH "Secret Melody.mp3"
