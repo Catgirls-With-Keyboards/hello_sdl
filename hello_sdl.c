@@ -7,7 +7,7 @@
 #define WINDOW_TITLE "SDL Example"
 #define EXAMPLE_TEXT "Example text"
 #define EXAMPLE_TEXT_SIZE 30
-#define EXAMPLE_TEXT_COLOR (SDL_Color){ 255, 0, 0, 255 }
+#define EXAMPLE_TEXT_COLOR (SDL_Color) { 255, 0, 0, 255 }
 #define FONT_PATH "lemon.ttf"
 
 #define MUSIC_PATH "Secret Melody.mp3"
@@ -87,22 +87,22 @@ int main(int argc, char **argv) {
   int quit = 0;
   while (1) {
     while (SDL_PollEvent(&e)) {
+      printf("Event: %" PRIu32 "\n", e.type);
+
       if (e.type == SDL_QUIT)
         goto exit_main_loop;
       else if (e.type == SDL_WINDOWEVENT)
         if (e.window.event != SDL_WINDOWEVENT_MOVED)
           screen_dirty = 1;
 
-      printf("Event: %" PRIu32 "\n", e.type);
-    }
-
-    if (screen_dirty) {
-      screen_dirty = 0;
-      SDL_RenderClear(renderer);
-      SDL_RenderCopy(renderer, imageTexture, NULL, NULL);
-      SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
-      SDL_RenderPresent(renderer);
-      puts("Screen rendered");
+      if (screen_dirty) {
+        screen_dirty = 0;
+        SDL_RenderClear(renderer);
+        SDL_RenderCopy(renderer, imageTexture, NULL, NULL);
+        SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
+        SDL_RenderPresent(renderer);
+        puts("Screen rendered");
+      }
     }
   }
 
